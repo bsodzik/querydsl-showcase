@@ -1,7 +1,7 @@
 package com.bsodzik.repository;
 
-import org.springframework.stereotype.Repository;
 import com.bsodzik.model.Customer;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,7 +19,7 @@ public class JpqlCustomerRepository implements CustomerRepository {
 
 	@Override
 	public List<Customer> findAll(int page, int size) {
-		return entityManager.createQuery("select c from Customer c", Customer.class)
+		return entityManager.createQuery("select c from Customer c order by c.id asc", Customer.class)
 				.setFirstResult(page * size)
 				.setMaxResults(size)
 				.getResultList();
